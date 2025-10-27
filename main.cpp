@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <set>
+#include <set> // Comment #0: Include set header for using std::set.
 #include "Goat.h"
 using namespace std;
 
