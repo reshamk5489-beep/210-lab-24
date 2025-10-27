@@ -1,17 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20; // Comment #1: Define constants for array sizes and max age.
 
 // Comment #2: Function prototypes
-int select_goat(list<Goat> trip);
-void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
-void display_trip(list<Goat> trip);
+int select_goat(set<Goat> trip);
+void delete_goat(set<Goat> &trip);
+void add_goat(set<Goat> &trip, string [], string []);
+void display_trip(set<Goat> trip);
 int main_menu();
 
 int main() {
@@ -19,8 +19,8 @@ int main() {
     bool again;
     int choice;
     bool exit = false;
-    list<Goat> trip; // Comment #3: List to hold Goat objects.
-
+    set<Goat> trip; // Comment #3: List to hold Goat objects.
+    
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
@@ -86,7 +86,7 @@ int main_menu()
     cout << endl;
 }
 
-void add_goat(list<Goat> &trip, string names[], string colors[])
+void add_goat(set<Goat> &trip, string names[], string colors[])
 {
     // Comment #7: Generate random name, color, and age.
     string name = names[rand() % SZ_NAMES];
@@ -97,10 +97,10 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
     Goat goat(name, age, color);
 
     // Comment #9: Display added goat details.
-    trip.push_back(goat);
+    trip.insert(goat);
 }
 
-void display_trip(list<Goat> trip)
+void display_trip(set<Goat> trip)
 {
     int count = 1;
     for (auto goat : trip) // Comment #10: Iterate through the list and display each goat's details.
@@ -114,7 +114,7 @@ void display_trip(list<Goat> trip)
     cout << endl;
 }
 
-int select_goat(list<Goat> trip)
+int select_goat(set<Goat> trip)
 {
     int choice;
     display_trip(trip); // Comment #11: Show the list of goats to choose from.
@@ -142,7 +142,7 @@ int select_goat(list<Goat> trip)
     } 
 }
 
-void delete_goat(list<Goat> &trip)
+void delete_goat(set<Goat> &trip)
 {
     int choice;
     int count = 1;
